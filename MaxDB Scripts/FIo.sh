@@ -1,0 +1,16 @@
+fio --name=4kseread --rw=read --direct=1 --ioengine=libaio --bs=4k --numjobs=4 --iodepth=128 --size=1G --runtime=600 --group_reporting
+fio --name=16kseqreads --rw=read --direct=1 --ioengine=libaio --bs=16k --numjobs=4 --iodepth=128 --size=1G --runtime=600 --group_reporting
+fio --name=64kseqreads --rw=read --direct=1 --ioengine=libaio --bs=64k --numjobs=4 --iodepth=128 --size=1G --runtime=600 --group_reporting
+fio --name=128kseread --rw=read --direct=1 --ioengine=libaio --bs=128k --numjobs=4 --iodepth=128 --size=1G --runtime=600 --group_reporting
+fio --name=4krandread --rw=randread --direct=1 --ioengine=libaio --bs=4k --numjobs=4 --iodepth=128 --size=1G --runtime=600 --group_reporting
+fio --name=16krandreads --rw=randread --direct=1 --ioengine=libaio --bs=16k --numjobs=4 --iodepth=128 --size=1G --runtime=600 --group_reporting
+fio --name=64krandreads1 --rw=randread --direct=1 --ioengine=libaio --bs=64k --numjobs=4 --iodepth=128 --size=1G --runtime=600 --group_reporting
+fio --name=128krandreadread --rw=randread --direct=1 --ioengine=libaio --bs=128k --numjobs=4 --iodepth=128 --size=1G --runtime=600 --group_reporting
+fio --name=4kseqwrite --rw=write --direct=1 --ioengine=libaio --bs=4k --numjobs=4 --iodepth=128 --size=1G --runtime=600 --group_reporting
+fio --name=16kseqwrite --rw=write --direct=1 --ioengine=libaio --bs=16k --numjobs=4 --iodepth=128 --size=1G --runtime=600 --group_reporting
+fio --name=64kseqwrite --rw=write --direct=1 --ioengine=libaio --bs=64k --numjobs=4 --iodepth=128 --size=1G --runtime=600 --group_reporting
+fio --name=128kseqwrite --rw=write --direct=1 --ioengine=libaio --bs=128k --numjobs=4 --iodepth=128 --size=1G --runtime=600 --group_reporting
+fio --name=4krandwrite --rw=randrw --direct=1 --ioengine=libaio --bs=4k --numjobs=4 --iodepth=128 --size=1G --runtime=600 --group_reporting
+fio --name=16krandwrite --rw=randrw --direct=1 --ioengine=libaio --bs=16k --numjobs=4 --iodepth=128 --size=1G --runtime=600 --group_reporting
+fio --name=64krandwrite --rw=randrw --direct=1 --ioengine=libaio --bs=64k --numjobs=4 --iodepth=128 --size=1G --runtime=600 --group_reporting
+fio --name=128krandwrite --rw=randrw --direct=1 --ioengine=libaio --bs=128k --numjobs=4 --iodepth=128 --size=1G --runtime=600 --group_reporting

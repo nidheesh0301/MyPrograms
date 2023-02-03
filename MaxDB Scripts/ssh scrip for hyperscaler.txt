@@ -1,0 +1,25 @@
+#!/bin/bash
+read -p "Enter your i/c ID :" user
+while [ "$user" == "" ]
+do
+read -p "Username:" user
+echo ""
+done
+echo ""
+read -s -p "Password :" pass
+echo ""
+while [ "$pass" == "" ]
+do
+read -p "Enter you Password:" pass
+echo ""
+done
+input="/automation/DATABASE/DR/input.csv"
+for line in `cat $input`
+do
+echo "================= $line ========================"
+sid=$(echo $line|awk -F'.' '{ print $1 }' | cut -c8-10)
+sshpass -p "${pass}" ssh -t -q -o StrictHostKeyChecking=no -o ConnectTimeout=3 $user@${line} sudo su - ${sid}adm  << EOF >> /tmp/auto_extend_enable_DC47.log  2>/dev/null
+dbmcli -U c auto_extend on 90
+dbmcli -U c auto_extend show
+EOF
+done

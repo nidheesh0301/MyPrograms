@@ -1,0 +1,16 @@
+- hosts: all
+  gather_facts: no
+  become: yes
+  strategy: free
+
+  tasks:
+    - name: get SID
+      shell: df -h | grep saparch | head -1 | awk '{print $6}' | cut -c8-10 | tr [:upper:] [:lower:] | tr -d '\n'
+      register: SID
+
+    - name: get CPU info
+      shell: uptime
+      register: uptime
+    - debug: var=uptime.stdout_lines
+    - debug: var=SID.stdout_lines
+

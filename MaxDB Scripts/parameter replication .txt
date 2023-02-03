@@ -1,0 +1,8 @@
+vsa8746574:x1vadm 55> cat create_db_param_replication.sh
+#!/bin/sh
+dbmcli -U c param_createdbcfg
+grep ^param_directput /sapdb/X1V/data/config/X1V.dbcfg | sed s/param_directput/param_put/ > /tmp/X1V_param_replicate_tst
+sed -i -n -e '3,$p' /tmp/X1V_param_replicate_tst
+vsa8746574:x1vadm 56> pwd
+/usr/sap/X1V/home
+vsa8746574:x1vadm 57>

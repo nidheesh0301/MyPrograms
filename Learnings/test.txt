@@ -1,0 +1,3 @@
+Hello
+This is the basic python programming
+school telusko

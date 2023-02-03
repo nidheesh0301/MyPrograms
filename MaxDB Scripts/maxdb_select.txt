@@ -1,0 +1,37 @@
+i502493@bsa0248:~$ cat select_maxdb_new.pl
+#!/usr/bin/perl -w
+use strict;
+
+while(<STDIN>){
+  chomp;
+  s/^\s+|\s+$//g;
+  next if m/^$/;
+  next if m/^#/;
+
+  my @a = split /;/, $_;
+  my $fqdnstring = lc($a[0]);
+  my $sid = substr($fqdnstring,4,3);
+
+if($a[0] eq"xx"){
+    next;
+  }
+
+my $dbmcli = qq(dbmcli -n $fqdnstring -d $sid -u control,JifnU4us);
+my $s = "sql_execute select path, round(CONFIGUREDSIZE/1024/1024,2)CONFIG_SIZE_GB,ROUND(USEDSIZE/1024/1024,2) USED_SIZE_GB, USEDSIZEPERCENTAGE as count from datavolumes
+WHERE USEDSIZEPERCENTAGE < 80 ";
+"\n\n" ;
+#my $s = "param_directget MaxSQLLocks";
+  my @code = ();
+foreach(`$dbmcli "$s"`){
+    chomp;
+    s/^\s+|\s+$//g;
+    next if m/^$/;
+    push @code, $sid.";".$_."\n";
+  }
+#  print "$sid;$a[1];$a[2];@code\n";
+print "@code";
+  }
+__END__
+
+#usage cat input.txt | grep maxdb_select.pl
+

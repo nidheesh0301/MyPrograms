@@ -1,0 +1,10 @@
+|Check No | Check Name                     | Current Value                                                    | Expected Value| Check Result |
+|1 |Check OS version                       |12.4                                                              | 12.4           |  PASS
+|2 |Check Sar Utility                      |SAR file installed and running                                    | Installed & Running| PASS
+|3 |Check files in saparch,sapdata1,saplog1|1 in each folder                                        | Atleast one file must be present| PASS
+|4 |Check kernel version                   |4.12.14-95.80-default                                             | 4.12.14-95.80-default        |   PASS
+|5 |Check User and Group settings (SIDADM) |uid=100002322(xr4adm) gid=1002(sapsys) groups=1002(sapsys),1025(sapinst),1008(sdba)| NA        |   INFO
+|6 |Check User and Group settings (SQDSID) |uid=100002321(sqdxr4) gid=1002(sapsys) groups=1002(sapsys),1025(sapinst),1008(sdba)| NA        |   INFO
+|7 |File system                            |INFO                                                               | INFO     | INFO
+|8 |Check the ownership of sapdb,sapdata1,saplog1 |SAParch usr/grp : root/root, SAPdata usr/grp : sdb/sdba, SAPlog usr/grp : sdb/sdba|sdb/sdba    | INFO
+|9 |Check the Rundirectory path            |/sapdb/XR4/data/wrk/XR4                                   |/sapdb/XR4/data/wrk/XR4 | PASS

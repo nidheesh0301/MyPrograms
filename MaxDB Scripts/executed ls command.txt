@@ -1,0 +1,37 @@
+vsa7648596:/home/SCRIPTS/SYSTEM_SCAN/nid # cat scan.sh
+
+#!/bin/bash
+#Sishir i351302
+read -p "Enter your i/c ID :" user
+#user= $user | tr [A-Z] [a-z]
+while [ "$user" == "" ]
+do
+read -p "Username:" user
+echo ""
+done
+echo ""
+read -s -p "Password :" pass
+echo ""
+while [ "$pass" == "" ]
+do
+read -p "Enter you Password:" pass
+echo ""
+done
+
+input=$1
+for line in `cat $input`
+do
+echo "================= $line ========================"
+sid=$(echo $line|awk -F'.' '{ print $1 }' | cut -c5-7)
+
+sshpass -p "${pass}" ssh -t -q -o StrictHostKeyChecking=no -o ConnectTimeout=3 $user@${line} sudo su - << EOF >> "/home/SCRIPTS/SYSTEM_SCAN/nid/saparch.log" 2>/dev/null
+sh /basmnt/repository/EC_Payroll/DATABASE/param.sh
+EOF
+done
+vsa7648596:/home/SCRIPTS/SYSTEM_SCAN/nid # cat /basmnt/repository/EC_Payroll/DATABASE/param.sh
+#!/bin/bash
+SID=$(df -hP | grep saparch | awk '{print $6}' | cut -d '/' -f3 |head -1)
+FS=`ls -lrth /sapdb/$SID/ | grep saparch`
+echo "$SID"
+echo "$FS"
+vsa7648596:/home/SCRIPTS/SYSTEM_SCAN/nid #
